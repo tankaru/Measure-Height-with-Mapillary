@@ -12,4 +12,4 @@
 ## Note
 * This is very rough calculation. Do not rely on this.
 
-!(Screenshot)[screenshot.jpg]
+![Screenshot](screenshot.jpg)
