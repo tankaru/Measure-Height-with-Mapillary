@@ -1,5 +1,5 @@
 # Measure Height with Mapillary
-http://htmlpreview.github.io/?https://github.com/tankaru/Measure-Height-with-Mapillary/blob/master/web.html
+Test page http://htmlpreview.github.io/?https://github.com/tankaru/Measure-Height-with-Mapillary/blob/master/web.html
 
 ## Usage
 1. Put mapillary url of 360 photo into the top text box and press button
@@ -13,6 +13,7 @@ http://htmlpreview.github.io/?https://github.com/tankaru/Measure-Height-with-Map
 ## Note
 * This is very rough calculation. Do not rely on this.
 
+## Screenshot
 ![Screenshot](screenshot.jpg)
 
 
