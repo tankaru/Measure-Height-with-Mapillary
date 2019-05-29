@@ -1,10 +1,10 @@
-# Measure-Height-with-Mapillary
+# Measure Height with Mapillary
 http://htmlpreview.github.io/?https://github.com/tankaru/Measure-Height-with-Mapillary/blob/master/web.html
 
 ## Usage
 1. Put mapillary url of 360 photo into the top text box and press button
 1. 360 photo is opened with grid
-1. Read the angle of the target feature (buildings)
+1. Read the angle of the target feature (like buildings)
 1. Measure the distance between the camera and the target feature with other service
 1. Put them into the bottom text box
 1. The height of the feature is calculated
