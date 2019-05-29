@@ -1,0 +1,49 @@
+
+<html>
+<head>
+<style>
+.relative {
+    position: relative;
+}
+.absolute {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+</style>
+
+</head>
+
+<body>
+<p>Mapillary URL (360 PHOTO ONLY!):</br>
+<input type="url" size="160" id="mapillaryurl" value="https://www.mapillary.com/app/?lat=37.48689999999999&lng=139.9298&z=20&pKey=JQJrg5HaJ4Q0QvYCP-L9GQ&focus=photo&x=0.7402020403448308&y=0.5212907903987006&zoom=0"><input type="button" value="Open 360 photo" onclick="myfunc()">
+
+<div class="relative">
+<p id="mapillaryid"><img height='600' src='thumb-2048.jpg'/></p>
+<img height="600" src="grid.png" class="absolute"/>
+</div>
+
+<p>Here I want to put an OSM-based map to measure distance between the camera and the taget feature.
+
+<p><form onsubmit="return false" oninput="result.value = Number(distance.value) * Math.tan(Number(theta.value)*Math.PI/180);">
+
+<ul>
+	<li>Distance[m]: <input type="number" name="distance"> m
+	<li>Theta[deg]: <input type="number" name="theta"> deg
+	<li><strong>Height[m] = Distance * tan(Theta*&pi;/180) = <u><output name="result"></output> m</u></strong>
+</ul>
+
+<script>
+var myfunc = function(){
+	var murl = document.getElementById("mapillaryurl").value;
+	const [,mid] = murl.match(/pKey=([^&]*)&/);
+	var myh1 = document.getElementById("mapillaryid");
+	myh1.innerHTML = "<img height='600' src='https://images.mapillary.com/" + mid +"/thumb-2048.jpg'/>";
+
+}
+</script>
+</body>
+
+
+</html>
