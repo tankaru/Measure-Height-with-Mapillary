@@ -13,3 +13,5 @@
 * This is very rough calculation. Do not rely on this.
 
 ![Screenshot](screenshot.jpg)
+
+http://htmlpreview.github.io/?https://github.com/tankaru/Measure-Height-with-Mapillary/blob/master/web.html
