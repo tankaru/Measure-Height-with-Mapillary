@@ -47,6 +47,8 @@ var myfunc = function(){
 	const [,lat,lon,mid] = murl.match(/lat=(-?\d[0-9.]*).*&lng=(-?\d[0-9.]*).*pKey=([^&]*)&/);
 	var myh1 = document.getElementById("mapillaryid");
 	myh1.setAttribute("src", "https://images.mapillary.com/" + mid +"/thumb-2048.jpg");
+	var meurisse = document.getElementById("meurisse");
+	meurisse.setAttribute("href","https://map.meurisse.org/?lon=" + lon + "&lng=" + lon + "&lat=" + lat + "&zoom=18");
 	var gsimaps = document.getElementById("gsimaps");
 	gsimaps.setAttribute("href","https://maps.gsi.go.jp/#18/" + lat + "/" + lon + "/&ls=seamlessphoto&disp=1&lcd=seamlessphoto&vs=c1j0h0k0l0u0t0z0r0s0m0f1&d=vl");
 
