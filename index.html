@@ -49,12 +49,12 @@
 </div>
 <div id="calc">
 <h1>Calc Height</h1>
-<p><form onsubmit="return false" oninput="result.value = Number(distance.value) * Math.tan(Number(theta.value)*Math.PI/180);" />
-
+<p><form name="calcform" onsubmit="return false" oninput="result.value = Number(distance.value) * Math.tan(Number(theta.value)*Math.PI/180);" />
+	
 <ul>
 	<li>Distance[m]: <input type="number" name="distance" id="distance"> m
 	<li>Angle[deg]: <input type="number" name="theta" id="theta"> deg
-	<li><strong>Height[m] = <code>Distance * tan(Angle*&pi;/180)</code> = <u><output name="result"></output> m</u></strong>
+	<li><strong>Height[m] = <code>Distance * tan(Angle*&pi;/180)</code><span name="result_text"><br/> = <u><output name="result"></output> m</u></span></strong>
 </ul>
 </div>
 <script src="leaflet.rotatedMarker.js"></script>
@@ -66,6 +66,7 @@ let mly;
 let map;
 let camera_marker;
 let target_marker;
+let distance_line;
 
 init();
 
@@ -100,7 +101,36 @@ function initPhoto(){
 			camera_marker.setRotationAngle(pov.bearing);
 		});
 
-	});	
+	});
+	var tagComponent = mly.getComponent("tag");
+	tagComponent.changeMode(Mapillary.TagComponent.TagMode.CreateRect);
+	var createdIndex = 0;
+	tagComponent.on(Mapillary.TagComponent.TagComponent.geometrycreated, function(geometry) {
+		
+		function updateAngle(tag, geometry){
+			const rect = tag.geometry._rect;
+
+			const dy = Math.abs(rect[1]-rect[3]);
+			const angle = dy*180;
+			tag.setOptions({text: `${Math.round(angle)} deg`});
+			document.getElementById("theta").value = angle;
+			document.calcform.oninput();
+		}
+
+		var id = "id-" + createdIndex++;
+
+		var tag = new Mapillary.TagComponent.OutlineTag(id, geometry, { editable: true, text: "", lineColor: 0x0000ff, textColor: 0x0000ff});
+		updateAngle(tag, geometry);
+
+		var onTagGeometryChanged = function(tag) {
+			updateAngle(tag, geometry);
+
+			console.log(tag.id, tag.geometry._rect);
+		};
+		tag.on(Mapillary.TagComponent.OutlineTag.geometrychanged, onTagGeometryChanged);
+
+		tagComponent.add([tag]);
+	});
 }
 function initMap(){
 //地図を表示するdiv要素のidを設定
@@ -140,13 +170,19 @@ map = L.map('mapcontainer');
 	target_marker.on('move',function(event){
 		showDistance();
 
-  	});
+	  });
+	  distance_line = L.polyline([]);
 }
 
 function showDistance(){
 	const [distance, phi] = getDistancePhi(camera_marker.getLatLng(), target_marker.getLatLng());
-	if (distance < 1000) {document.getElementById("distance").value = distance;}
+	if (distance < 1000) {
+		document.getElementById("distance").value = distance;
+		document.calcform.oninput();
+		distance_line.setLatLngs([camera_marker.getLatLng(), target_marker.getLatLng()]).addTo(map);
+	}
 	else {};
+
 }
 
 
