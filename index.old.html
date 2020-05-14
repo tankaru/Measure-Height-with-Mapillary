@@ -1,0 +1,60 @@
+
+<html>
+<head>
+<style>
+.relative {
+    position: relative;
+}
+.absolute {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+</style>
+
+</head>
+
+<body>
+<h1>Set Mapillary URL (360 PHOTO ONLY!)</h1>
+<input type="url" size="160" id="mapillaryurl" value="https://www.mapillary.com/app/?lat=37.48689999999999&lng=139.9298&z=20&pKey=JQJrg5HaJ4Q0QvYCP-L9GQ&focus=photo&x=0.7402020403448308&y=0.5212907903987006&zoom=0"><input type="button" value="Open 360 photo" onclick="myfunc()">
+
+<h1>Measure Angle</h1>
+<div class="relative">
+<img  id="mapillaryid" height='600' src='thumb-2048.jpg'/>
+<img height="600" src="grid.png" class="absolute"/>
+</div>
+
+
+<h1>Measure Distance</h1>
+	<ul>
+		<li>Open <a id='meurisse' href='https://map.meurisse.org/?lon=139.930984&lng=139.930984&lat=37.487816&zoom=18' target='_blank'>map.meurisse.org</a>
+		<li>Open <a id='gsimaps' href='https://maps.gsi.go.jp/#18/37.487103/139.930512/&ls=seamlessphoto&disp=1&lcd=seamlessphoto&vs=c1j0h0k0l0u0t0z0r0s0m0f1&d=vl' target='_blank'>地理院地図</a>
+	</ul>
+	
+<h1>Calc Height</h1>
+<p><form onsubmit="return false" oninput="result.value = Number(distance.value) * Math.tan(Number(theta.value)*Math.PI/180);">
+
+<ul>
+	<li>Distance[m]: <input type="number" name="distance"> m
+	<li>Angle[deg]: <input type="number" name="theta"> deg
+	<li><strong>Height[m] = <code>Distance * tan(Angle*&pi;/180)</code> = <u><output name="result"></output> m</u></strong>
+</ul>
+
+<script>
+var myfunc = function(){
+	var murl = document.getElementById("mapillaryurl").value;
+	const [,lat,lon,mid] = murl.match(/lat=(-?\d[0-9.]*).*&lng=(-?\d[0-9.]*).*pKey=([^&]*)&/);
+	var myh1 = document.getElementById("mapillaryid");
+	myh1.setAttribute("src", "https://images.mapillary.com/" + mid +"/thumb-2048.jpg");
+	var meurisse = document.getElementById("meurisse");
+	meurisse.setAttribute("href","https://map.meurisse.org/?lon=" + lon + "&lng=" + lon + "&lat=" + lat + "&zoom=18");
+	var gsimaps = document.getElementById("gsimaps");
+	gsimaps.setAttribute("href","https://maps.gsi.go.jp/#18/" + lat + "/" + lon + "/&ls=seamlessphoto&disp=1&lcd=seamlessphoto&vs=c1j0h0k0l0u0t0z0r0s0m0f1&d=vl");
+
+}
+</script>
+</body>
+
+
+</html>
