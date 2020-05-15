@@ -202,7 +202,7 @@ function drawGrid(){
 		for (let i = 0; i < div_number; i++){
 			let rect = [i/div_number, (-angle+90)/180, (i+1)/div_number, (-angle+90)/180];
 			let rectGeometry = new Mapillary.TagComponent.RectGeometry(rect);
-			let rectTag = new Mapillary.TagComponent.OutlineTag('tag-' + tag_number, rectGeometry, { lineWidth: 10, text: angle});
+			let rectTag = new Mapillary.TagComponent.OutlineTag('tag-' + tag_number, rectGeometry, { lineWidth: 2, text: angle});
 			tagComponent.add([rectTag]);
 			tag_number++;
 			
