@@ -20,19 +20,16 @@
     top: 0px;
 }
 #mly {
-	width: 640px;
+	width: 100%;
 	height: 480px;
 
 }
 #mapcontainer {
-	width: 640px;
+	width: 100%;
 	height: 480px;
 
 }
-#map, #photo, #calc {
-	margin: 10px;
-	float:left;
-}
+
 </style>
 
 </head>
@@ -53,35 +50,38 @@
 			</div>
 		  </form>
 	</nav>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-4 bg-white">
+				<div id="photo">
+					<h1>Measure Angle</h1>
+					<div id='mly'></div>
+				</div>
+			</div>
+			<div class="col-lg-4 bg-white">
+				<div id="map">
+					<h1>Measure Distance</h1>
+					<div id='mapcontainer'></div>
+				</div>
+			</div>
+			<div class="col-lg-4 bg-white">
+				<div id="calc">
+					<h1>Calc Height</h1>
+					<p>
+						<form name="calcform" onsubmit="return false"
+							oninput="result.value = Number(distance.value) * Math.tan(Number(theta.value)*Math.PI/180);" />
 
-	<div class="container-fluid bg-white">
-		<div id="photo">
-			<h1>Measure Angle</h1>
-			<div id='mly'></div>
+						<ul>
+							<li>Distance[m]: <input type="number" name="distance" id="distance"> m
+							<li>Angle[deg]: <input type="number" name="theta" id="theta"> deg
+							<li class="alert-success font-weight-bold"><code class="">Height[m] = Distance *
+									tan(Angle*&pi;/180)<span name="result_text"><br /> =
+										<u><output name="result"></output> m</u></span></code>
+						</ul>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div class="container-fluid bg-white">
-		<div id="map">
-			<h1>Measure Distance</h1>
-			<div id='mapcontainer'></div>
-		</div>
-	</div>
-	<div class="container-fluid bg-white">
-		<div id="calc">
-			<h1>Calc Height</h1>
-			<p>
-				<form name="calcform" onsubmit="return false"
-					oninput="result.value = Number(distance.value) * Math.tan(Number(theta.value)*Math.PI/180);" />
-
-				<ul>
-					<li>Distance[m]: <input type="number" name="distance" id="distance"> m
-					<li>Angle[deg]: <input type="number" name="theta" id="theta"> deg
-					<li class="alert-success font-weight-bold"><code class="">Height[m] = Distance * tan(Angle*&pi;/180)<span name="result_text"><br /> =
-								<u><output name="result"></output> m</u></span></code>
-				</ul>
-		</div>
-	</div>
-
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
