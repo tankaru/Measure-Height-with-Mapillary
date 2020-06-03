@@ -54,26 +54,26 @@
 		<div class="row">
 			<div class="col-lg-4 bg-white">
 				<div id="photo">
-					<h1>Measure Angle</h1>
+					<h2>Measure Angle</h2>
 					<div id='mly'></div>
 				</div>
 			</div>
 			<div class="col-lg-4 bg-white">
 				<div id="map">
-					<h1>Measure Distance</h1>
+					<h2>Measure Distance</h2>
 					<div id='mapcontainer'></div>
 				</div>
 			</div>
 			<div class="col-lg-4 bg-white">
 				<div id="calc">
-					<h1>Calc Height</h1>
+					<h2>Calc Height</h2>
 					<p>
 						<form name="calcform" onsubmit="return false"
 							oninput="result.value = Number(distance.value) * Math.tan(Number(theta.value)*Math.PI/180);" />
 
 						<ul>
-							<li>Distance[m]: <input type="number" name="distance" id="distance"> m
-							<li>Angle[deg]: <input type="number" name="theta" id="theta"> deg
+							<li>Distance: <input type="number" name="distance" id="distance"> m
+							<li>Angle: <input type="number" name="theta" id="theta"> deg
 							<li class="alert-success font-weight-bold"><code class="">Height[m] = Distance *
 									tan(Angle*&pi;/180)<span name="result_text"><br /> =
 										<u><output name="result"></output> m</u></span></code>
